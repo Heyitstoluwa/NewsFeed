@@ -57,7 +57,7 @@ def get_articles():
 def get_article_by_title(title):
     article = {}
     try:
-        conn = connect_to_db()
+        conn = create_connection()
         conn.row_factory = sqlite3.Row
         cur = conn.cursor()
         cur.execute("SELECT * FROM articles WHERE title = ?",(title,))

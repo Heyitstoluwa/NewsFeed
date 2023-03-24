@@ -197,10 +197,10 @@ def search():
             WHERE title LIKE '%' || ? || '%'
             OR content LIKE '%' || ? || '%';
             """
-        search_anything = request.args.get('search_anything')
+        search_anything = requests.args.get('search_anything')
         results = curr.execute(query, (search_anything, search_anything)).fetchall()
         if results is None:
-            return make_response(jsonify({'message':'Not found', 'data': reults}),404)
+            return make_response(jsonify({'message':'Not found', 'data': results}),404)
         return jsonify({'message':'success', 'data': results})
     finally:
         conn.close()
